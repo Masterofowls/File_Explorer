@@ -1,0 +1,433 @@
+/* =================== Preview Panel =================== */
+.preview-panel {
+  width: 380px;
+  min-width: 300px;
+  max-width: 50vw;
+  border-left: 1px solid var(--border);
+  background: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideIn 0.15s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px 4px;
+  gap: 8px;
+}
+
+.preview-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+.preview-filename {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.preview-close {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  transition:
+    background 0.1s,
+    color 0.1s;
+}
+
+.preview-close:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.preview-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 16px 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.preview-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
+.preview-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px 16px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.preview-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: previewSpin 0.6s linear infinite;
+}
+
+@keyframes previewSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.preview-error {
+  padding: 16px;
+  color: #c62828;
+  font-size: 13px;
+  background: rgba(198, 40, 40, 0.06);
+  border-radius: var(--radius-md);
+  margin: 12px;
+}
+
+.preview-unsupported {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px 16px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.preview-unsupported p {
+  font-size: 13px;
+  margin: 0;
+}
+.preview-hint {
+  font-size: 11px;
+  color: var(--text-disabled);
+}
+
+/* ─── Code / Text preview ─── */
+.preview-code-container {
+  position: relative;
+}
+
+.preview-code {
+  margin: 0;
+  padding: 12px 16px;
+  font-family:
+    "JetBrains Mono", "Cascadia Code", "Fira Code", "Consolas", monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  white-space: pre-wrap;
+  word-break: break-word;
+  tab-size: 2;
+  background: var(--bg-tertiary);
+  overflow-x: auto;
+}
+
+.preview-line-count {
+  position: sticky;
+  bottom: 0;
+  padding: 4px 16px;
+  font-size: 10px;
+  color: var(--text-disabled);
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  text-align: right;
+}
+
+/* Syntax highlights */
+.preview-kw {
+  color: #0033b3;
+  font-weight: 600;
+}
+.preview-str {
+  color: #067d17;
+}
+.preview-num {
+  color: #1750eb;
+}
+.preview-comment {
+  color: #8c8c8c;
+  font-style: italic;
+}
+
+/* ─── Markdown preview ─── */
+.preview-markdown {
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+.preview-markdown h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 16px 0 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 6px;
+}
+.preview-markdown h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 14px 0 6px;
+}
+.preview-markdown h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 12px 0 4px;
+}
+.preview-markdown h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px 0 4px;
+}
+.preview-markdown h5,
+.preview-markdown h6 {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 8px 0 4px;
+}
+
+.preview-markdown p {
+  margin: 6px 0;
+}
+.preview-markdown strong {
+  font-weight: 600;
+}
+.preview-markdown em {
+  font-style: italic;
+}
+.preview-markdown del {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+.preview-markdown blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 4px 12px;
+  margin: 8px 0;
+  color: var(--text-secondary);
+  background: var(--bg-hover);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.preview-markdown li {
+  margin-left: 20px;
+  margin-bottom: 2px;
+  list-style-type: disc;
+}
+.preview-markdown hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 12px 0;
+}
+.preview-markdown a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.preview-markdown a:hover {
+  text-decoration: underline;
+}
+
+.md-codeblock {
+  background: var(--bg-tertiary);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-family: "JetBrains Mono", "Cascadia Code", monospace;
+  font-size: 12px;
+  overflow-x: auto;
+  margin: 8px 0;
+}
+
+.md-inline-code {
+  background: var(--bg-tertiary);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: "JetBrains Mono", "Cascadia Code", monospace;
+  font-size: 12px;
+}
+
+.md-img-ref {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* ─── SVG preview ─── */
+.preview-svg-container {
+  padding: 8px;
+}
+
+.preview-svg-render {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: repeating-conic-gradient(#f0f0f0 0% 25%, #fff 0% 50%) 50% / 16px
+    16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  min-height: 120px;
+  overflow: hidden;
+}
+
+.preview-svg-render svg {
+  max-width: 100%;
+  max-height: 360px;
+}
+
+.preview-source-toggle {
+  margin-top: 8px;
+}
+
+.preview-source-toggle summary {
+  font-size: 11px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px 0;
+  user-select: none;
+}
+
+.preview-source-toggle summary:hover {
+  color: var(--accent);
+}
+
+/* ─── Image preview ─── */
+.preview-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: repeating-conic-gradient(#f0f0f0 0% 25%, #fff 0% 50%) 50% / 16px
+    16px;
+  min-height: 120px;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+/* ─── Media preview ─── */
+.preview-media-container {
+  padding: 8px;
+}
+.preview-video {
+  width: 100%;
+  border-radius: var(--radius-md);
+  background: #000;
+  max-height: 50vh;
+}
+
+.preview-audio-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 16px;
+}
+
+.preview-audio-artwork {
+  font-size: 64px;
+  line-height: 1;
+  opacity: 0.5;
+}
+.preview-audio {
+  width: 100%;
+  max-width: 320px;
+}
+
+/* ─── PDF preview ─── */
+.preview-pdf-container {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+.preview-pdf {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  border: none;
+}
+
+/* ─── CSV table ─── */
+.preview-csv-container {
+  overflow: auto;
+}
+
+.preview-csv-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  font-family: "JetBrains Mono", "Cascadia Code", monospace;
+}
+
+.preview-csv-table th {
+  position: sticky;
+  top: 0;
+  background: var(--bg-tertiary);
+  font-weight: 600;
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+}
+
+.preview-csv-table td {
+  padding: 4px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.preview-csv-table tr:hover td {
+  background: var(--bg-hover);
+}
+.csv-row-num {
+  color: var(--text-disabled);
+  font-size: 10px;
+  width: 32px;
+  text-align: right;
+  padding-right: 8px !important;
+}

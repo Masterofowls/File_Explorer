@@ -1,0 +1,266 @@
+/* =================== Smooth Transitions & Animations =================== */
+
+/* Global smooth transitions */
+* {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Sidebar smooth transitions */
+.sidebar {
+  transition:
+    width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    min-width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  scroll-behavior: smooth;
+}
+
+.sidebar-item {
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.sidebar-item:active {
+  transform: scale(0.98);
+}
+
+.sidebar-remove-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: none;
+  background: transparent;
+  color: var(--text-disabled);
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 10px;
+  opacity: 0;
+  transition: all 0.15s ease;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.sidebar-item:hover .sidebar-remove-btn {
+  opacity: 1;
+}
+
+.sidebar-remove-btn:hover {
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+}
+
+/* FileList smooth animations */
+.file-list {
+  scroll-behavior: smooth;
+}
+
+.file-card {
+  transition:
+    background 0.12s ease,
+    transform 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.15s ease;
+}
+
+.file-card:active {
+  transform: scale(0.97);
+}
+
+.file-row {
+  transition:
+    background 0.1s ease,
+    transform 0.08s ease;
+}
+
+.file-row:active {
+  transform: scale(0.998);
+}
+
+/* View mode transition */
+.file-list.grid-view,
+.file-list.list-view,
+.file-list.details-view {
+  animation: viewFadeIn 0.2s ease;
+}
+
+@keyframes viewFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Toolbar button animation improvements */
+.toolbar-btn {
+  transition:
+    background 0.12s ease,
+    color 0.12s ease,
+    transform 0.1s ease,
+    box-shadow 0.12s ease;
+}
+
+.toolbar-btn:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+/* Context menu improvements */
+.context-menu {
+  animation: contextMenuIn 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes contextMenuIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.context-menu-item {
+  transition:
+    background 0.1s ease,
+    color 0.1s ease;
+}
+
+/* Dialog improvements */
+.dialog-overlay {
+  animation: overlayFadeIn 0.15s ease;
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dialog {
+  animation: dialogSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Preview panel */
+.preview-panel {
+  animation: previewSlideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes previewSlideIn {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Content area flex transition */
+.content-area {
+  transition: flex 0.2s ease;
+}
+
+/* Smooth scrollbars */
+.file-list,
+.sidebar,
+.preview-body,
+.terminal-body,
+.settings-body,
+.template-grid {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+/* Status bar calc button */
+.status-calc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  transition: all 0.12s ease;
+}
+
+.status-calc-btn:hover:not(:disabled) {
+  background: var(--bg-hover);
+  color: var(--accent);
+}
+
+.status-calc-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Loading spinner animations */
+.spinner,
+.preview-spinner {
+  animation-timing-function: linear;
+}
+
+/* Selection highlight animation */
+.file-card.selected,
+.file-row.selected {
+  animation: selectionPulse 0.2s ease;
+}
+
+@keyframes selectionPulse {
+  0% {
+    background: transparent;
+  }
+  50% {
+    background: var(--bg-active);
+  }
+  100% {
+    background: var(--bg-selected);
+  }
+}
+
+/* Breadcrumb hover */
+.breadcrumb-item {
+  transition: all 0.12s ease;
+}
+
+/* Search bar focus animation */
+.search-bar {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    width 0.25s ease;
+}
+
+/* Sort indicator transition */
+.details-col.clickable {
+  transition: color 0.12s ease;
+}
+
+/* Empty state fade in */
+.file-list-empty {
+  animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

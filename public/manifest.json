@@ -1,0 +1,10 @@
+{
+  "name": "Fluent File Explorer",
+  "short_name": "FileExplorer",
+  "description": "A modern fluent desktop file manager",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f3f3",
+  "theme_color": "#0078d4",
+  "icons": []
+}

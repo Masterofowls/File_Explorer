@@ -1,0 +1,61 @@
+/* =================== Responsive =================== */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 48px;
+    min-width: 48px;
+  }
+  .sidebar-heading,
+  .sidebar-label,
+  .sidebar-remove-btn {
+    display: none;
+  }
+  .sidebar-item {
+    justify-content: center;
+    padding: 8px 0;
+  }
+  .sidebar-icon {
+    font-size: 20px;
+  }
+  .search-bar {
+    width: 160px;
+    min-width: 100px;
+  }
+  .date-col,
+  .type-col {
+    display: none;
+  }
+  .preview-panel {
+    width: 280px;
+    min-width: 200px;
+  }
+  .settings-dialog {
+    width: 90vw;
+    min-width: unset;
+  }
+  .template-dialog {
+    min-width: unset;
+    max-width: 90vw;
+  }
+  .template-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    display: none;
+  }
+  .search-bar {
+    width: 120px;
+    min-width: 80px;
+  }
+  .toolbar-group:nth-child(n + 3) {
+    display: none;
+  }
+  .preview-panel {
+    display: none;
+  }
+  .terminal-panel {
+    max-height: 40vh;
+  }
+}
