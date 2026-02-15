@@ -1,0 +1,243 @@
+/* =================== Debug Panel =================== */
+.debug-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  max-height: 40vh;
+  z-index: 1000;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.debug-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.debug-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 12px;
+}
+
+.debug-expand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.1s;
+}
+
+.debug-expand-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.debug-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.debug-filter {
+  padding: 4px 6px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: 3px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.debug-filter:hover {
+  background: var(--bg-hover);
+}
+
+.debug-filter:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.debug-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--text-primary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.debug-checkbox input {
+  cursor: pointer;
+  accent-color: var(--accent);
+}
+
+.debug-clear-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.1s;
+  padding: 2px;
+}
+
+.debug-clear-btn:hover {
+  background: rgba(211, 47, 47, 0.15);
+  color: #d32f2f;
+}
+
+.debug-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.debug-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.debug-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.debug-content::-webkit-scrollbar-thumb {
+  background: var(--bg-hover);
+  border-radius: 4px;
+}
+
+.debug-content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-disabled);
+}
+
+.debug-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  color: var(--text-disabled);
+  font-size: 12px;
+}
+
+.debug-logs {
+  padding: 0;
+}
+
+.debug-log-entry {
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-primary);
+  transition: all 0.1s;
+}
+
+.debug-log-entry:hover {
+  background: var(--bg-secondary);
+}
+
+.debug-log-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.debug-level {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+  min-width: 50px;
+  text-align: center;
+  padding: 1px 4px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
+
+.debug-category {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.debug-message {
+  color: var(--text-primary);
+  flex: 1;
+  min-width: 100px;
+}
+
+.debug-duration {
+  color: #388e3c;
+  font-weight: 600;
+  min-width: 60px;
+  text-align: right;
+}
+
+.debug-time {
+  color: var(--text-disabled);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.debug-log-data {
+  margin-top: 6px;
+  padding: 6px;
+  background: rgba(0, 0, 0, 0.1);
+  border-left: 2px solid var(--accent);
+  border-radius: 2px;
+  overflow-x: auto;
+}
+
+.debug-log-data code {
+  color: var(--text-secondary);
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .debug-panel {
+    max-height: 50vh;
+  }
+
+  .debug-header {
+    font-size: 11px;
+  }
+
+  .debug-filter,
+  .debug-checkbox {
+    font-size: 10px;
+  }
+
+  .debug-content {
+    font-size: 10px;
+  }
+}

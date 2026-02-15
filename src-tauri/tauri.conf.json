@@ -4,29 +4,43 @@
   "version": "1.0.0",
   "identifier": "com.fluent.fileexplorer",
   "build": {
-    "beforeDevCommand": "npm run dev",
+    "beforeDevCommand": "",
     "devUrl": "http://localhost:1420",
     "beforeBuildCommand": "",
     "frontendDist": "../dist"
   },
   "app": {
+    "withGlobalTauri": true,
     "windows": [
       {
         "title": "Fluent File Explorer",
+        "label": "main",
         "width": 1200,
         "height": 800,
+        "minWidth": 600,
+        "minHeight": 400,
         "resizable": true,
-        "decorations": true,
-        "transparent": false
+        "decorations": false,
+        "transparent": false,
+        "shadow": true,
+        "center": true,
+        "focus": true,
+        "visible": true,
+        "dragDropEnabled": true
       }
     ],
+    "trayIcon": {
+      "id": "main-tray",
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": false,
+      "menuOnLeftClick": false,
+      "title": "Fluent File Explorer"
+    },
     "security": {
       "csp": null,
       "assetProtocol": {
         "enable": true,
-        "scope": [
-          "**"
-        ]
+        "scope": ["**"]
       }
     }
   },
@@ -39,7 +53,47 @@
       "icons/128x128@2x.png",
       "icons/icon.icns",
       "icons/icon.ico"
-    ]
+    ],
+    "category": "Utility",
+    "shortDescription": "A modern, fluent file explorer",
+    "longDescription": "Fluent File Explorer is a modern, native file manager with a clean interface, built with Tauri and React.",
+    "publisher": "Fluent Apps",
+    "copyright": "Copyright © 2024 Fluent Apps",
+    "fileAssociations": [
+      {
+        "ext": ["txt", "md", "json", "xml", "yaml", "yml", "csv", "log"],
+        "name": "Text Files",
+        "description": "Open text files with Fluent File Explorer"
+      }
+    ],
+    "windows": {
+      "certificateThumbprint": null,
+      "digestAlgorithm": "sha256",
+      "timestampUrl": "",
+      "wix": null,
+      "nsis": {
+        "installerIcon": "icons/icon.ico",
+        "headerImage": null,
+        "sidebarImage": null,
+        "installMode": "currentUser",
+        "languages": ["English"],
+        "displayLanguageSelector": false,
+        "compression": "lzma"
+      }
+    },
+    "linux": {
+      "deb": {
+        "desktopTemplate": null
+      },
+      "rpm": {
+        "epoch": 0
+      }
+    },
+    "macOS": {
+      "entitlements": null,
+      "frameworks": [],
+      "minimumSystemVersion": "10.13"
+    }
   },
   "plugins": {
     "shell": {
@@ -47,6 +101,10 @@
     },
     "fs": {
       "requireLiteralLeadingDot": false
+    },
+    "updater": {
+      "pubkey": "",
+      "endpoints": []
     }
   }
 }

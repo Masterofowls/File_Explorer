@@ -1,9 +1,7 @@
 {
   "identifier": "default",
   "description": "Default capabilities for the app",
-  "windows": [
-    "main"
-  ],
+  "windows": ["main"],
   "permissions": [
     "core:default",
     "fs:default",
@@ -27,6 +25,20 @@
     "dialog:allow-confirm",
     "shell:default",
     "shell:allow-open",
+    "notification:default",
+    "notification:allow-is-permission-granted",
+    "notification:allow-request-permission",
+    "notification:allow-notify",
+    "notification:allow-show",
+    "global-shortcut:default",
+    "global-shortcut:allow-is-registered",
+    "global-shortcut:allow-register",
+    "global-shortcut:allow-unregister",
+    "store:default",
+    "store:allow-get",
+    "store:allow-set",
+    "store:allow-save",
+    "store:allow-load",
     {
       "identifier": "shell:allow-execute",
       "allow": [

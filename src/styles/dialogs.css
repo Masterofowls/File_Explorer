@@ -29,7 +29,8 @@
 }
 
 .context-menu-item {
-  display: block;
+  display: flex;
+  align-items: center;
   width: 100%;
   padding: 6px 12px;
   border: none;
@@ -41,6 +42,26 @@
   border-radius: var(--radius-sm);
   transition: background 0.08s;
   font-family: inherit;
+  gap: 8px;
+}
+
+.context-menu-icon {
+  flex-shrink: 0;
+  width: 16px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.context-menu-label {
+  flex: 1;
+  min-width: 0;
+}
+
+.context-menu-shortcut {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--text-disabled);
+  margin-left: 24px;
 }
 
 .context-menu-item:hover:not(:disabled) {
@@ -161,9 +182,541 @@
   flex: 1;
   overflow: hidden;
   min-height: 0;
+  position: relative;
 }
 
 .content-area > .file-list-container {
   flex: 1;
   min-width: 0;
+}
+
+/* =================== Properties Dialog =================== */
+.properties-dialog {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 420px;
+  max-width: 90vw;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  animation: dialogSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.properties-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.properties-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.properties-title-row h3 {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
+
+.properties-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+}
+
+.properties-loading,
+.properties-error {
+  text-align: center;
+  padding: 24px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.properties-error {
+  color: #d32f2f;
+}
+
+.properties-section {
+  margin-bottom: 16px;
+}
+
+.properties-section h4 {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  margin: 0 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.property-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 4px 0;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.property-label {
+  flex-shrink: 0;
+  width: 80px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.property-value {
+  color: var(--text-primary);
+  word-break: break-all;
+  user-select: text;
+}
+
+.properties-attributes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.properties-attr {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  color: var(--text-disabled);
+  background: transparent;
+}
+
+.properties-attr.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--bg-active);
+}
+
+/* =================== Status Bar Improvements =================== */
+.status-calc-btn-inline {
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0 4px;
+  font-size: 12px;
+  margin-left: 4px;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+}
+
+.status-calc-btn-inline:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+/* =================== Recycle Bin Dialog =================== */
+.recycle-bin-dialog {
+  display: flex;
+  flex-direction: column;
+}
+
+.recycle-bin-dialog .dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.recycle-bin-dialog .dialog-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.recycle-bin-dialog .dialog-close-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--text-secondary);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+}
+
+.recycle-bin-dialog .dialog-close-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.recycle-bin-dialog .dialog-toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.recycle-bin-dialog .toolbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.15s;
+}
+
+.recycle-bin-dialog .toolbar-btn:hover:not(:disabled) {
+  background: var(--bg-hover);
+  border-color: var(--accent);
+}
+
+.recycle-bin-dialog .toolbar-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.recycle-bin-dialog .toolbar-btn.danger:hover:not(:disabled) {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.recycle-bin-dialog .dialog-error {
+  padding: 8px 16px;
+  background: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+  font-size: 12px;
+}
+
+.recycle-bin-list {
+  flex: 1;
+  overflow: auto;
+  padding: 8px 0;
+  min-height: 200px;
+  max-height: 400px;
+}
+
+.recycle-bin-loading,
+.recycle-bin-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.recycle-bin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.recycle-bin-table th {
+  text-align: left;
+  padding: 8px 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg-secondary);
+}
+
+.recycle-bin-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.recycle-bin-table tr:hover {
+  background: var(--bg-hover);
+}
+
+.recycle-bin-table tr.selected {
+  background: var(--bg-active);
+}
+
+.recycle-bin-table .item-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.recycle-bin-table .item-path {
+  color: var(--text-secondary);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recycle-bin-table .item-date {
+  white-space: nowrap;
+  color: var(--text-secondary);
+}
+
+.recycle-bin-table .item-size {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.recycle-bin-table .item-actions {
+  text-align: center;
+}
+
+.recycle-bin-table .restore-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.15s;
+}
+
+.recycle-bin-table .restore-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.recycle-bin-dialog .dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.recycle-bin-dialog .item-count {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* =================== Batch Rename Dialog =================== */
+.batch-rename-dialog {
+  max-width: 600px;
+}
+
+.batch-rename-dialog .dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.batch-rename-dialog .dialog-header h2 {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.batch-rename-dialog .dialog-close-btn {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.batch-rename-dialog .dialog-close-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.batch-rename-dialog .dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.batch-rename-dialog .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.batch-rename-dialog .form-group label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.batch-rename-dialog .form-group input[type="text"] {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-family: inherit;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  outline: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.batch-rename-dialog .form-group input[type="text"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.batch-rename-dialog .form-group.checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.batch-rename-dialog .form-group.checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+.batch-rename-dialog .form-group.checkbox input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--accent);
+}
+
+.batch-rename-dialog .form-error {
+  padding: 8px 12px;
+  background: rgba(211, 47, 47, 0.1);
+  border: 1px solid rgba(211, 47, 47, 0.3);
+  border-radius: var(--radius-sm);
+  color: #d32f2f;
+  font-size: 12px;
+}
+
+.batch-rename-dialog .batch-preview {
+  margin-top: 8px;
+}
+
+.batch-rename-dialog .batch-preview h3 {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.batch-rename-dialog .preview-list {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-tertiary);
+}
+
+.batch-rename-dialog .preview-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--text-disabled);
+  font-size: 12px;
+}
+
+.batch-rename-dialog .preview-item {
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.batch-rename-dialog .preview-item:last-child {
+  border-bottom: none;
+}
+
+.batch-rename-dialog .preview-item.changed {
+  background: rgba(46, 204, 64, 0.05);
+}
+
+.batch-rename-dialog .preview-old {
+  color: var(--text-secondary);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.batch-rename-dialog .preview-arrow {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.batch-rename-dialog .preview-new {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.batch-rename-dialog .dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.batch-rename-dialog .btn {
+  padding: 8px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1px solid var(--border);
+}
+
+.batch-rename-dialog .btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.batch-rename-dialog .btn-secondary:hover {
+  background: var(--bg-hover);
+}
+
+.batch-rename-dialog .btn-primary {
+  background: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
+}
+
+.batch-rename-dialog .btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.batch-rename-dialog .btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

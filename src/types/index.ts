@@ -21,6 +21,17 @@ export interface QuickAccessItem {
   icon: string;
 }
 
+export type OsType = "windows" | "linux" | "macos";
+
+export interface DriveItem {
+  label: string;
+  path: string;
+  total_bytes?: number;
+  available_bytes?: number;
+  used_bytes?: number;
+  percent_used?: number;
+}
+
 export type SortField = "name" | "size" | "modified" | "extension";
 export type SortDirection = "asc" | "desc";
 export type ViewMode = "grid" | "list" | "details";
@@ -31,8 +42,31 @@ export interface SortConfig {
 }
 
 export interface ClipboardState {
-  items: FileEntry[];
+  paths: string[];
   operation: "copy" | "cut";
+}
+
+export interface SystemClipboardFiles {
+  paths: string[];
+  is_cut: boolean;
+}
+
+export interface DragDropState {
+  isDragging: boolean;
+  dragPaths: string[];
+  dropTarget: string | null;
+  externalDragOver: boolean;
+}
+
+export interface DragDropHandlers {
+  dropTarget: string | null;
+  dragPaths: string[];
+  onDragStart: (e: React.DragEvent, entry: FileEntry) => void;
+  onDragOverFolder: (e: React.DragEvent, folderPath: string) => void;
+  onDragOverBackground: (e: React.DragEvent) => void;
+  onDragLeave: (e: React.DragEvent) => void;
+  onDrop: (e: React.DragEvent, targetPath: string) => void;
+  onDragEnd: () => void;
 }
 
 export interface ContextMenuAction {
@@ -41,6 +75,24 @@ export interface ContextMenuAction {
   action: () => void;
   separator?: boolean;
   disabled?: boolean;
+  shortcut?: string;
+}
+
+// File Properties
+export interface FileProperties {
+  name: string;
+  path: string;
+  is_dir: boolean;
+  size: number;
+  size_on_disk: number;
+  modified: string;
+  created: string;
+  accessed: string;
+  is_readonly: boolean;
+  is_hidden: boolean;
+  is_symlink: boolean;
+  extension: string;
+  item_count: number | null;
 }
 
 // Bookmarks
@@ -92,3 +144,51 @@ export interface TerminalTab {
   label: string;
   cwd: string;
 }
+
+// Recycle Bin
+export interface RecycleBinItem {
+  name: string;
+  original_path: string;
+  deleted_time: string;
+  size: number;
+  is_dir: boolean;
+}
+
+// USB Drive
+export interface UsbDrive {
+  name: string;
+  path: string;
+  total_space: number;
+  free_space: number;
+  drive_type: string;
+}
+
+// File Explorer Tab
+export interface ExplorerTab {
+  id: string;
+  path: string;
+  label: string;
+}
+
+// Drive Space Info
+export interface DriveSpaceInfo {
+  path: string;
+  total_bytes: number;
+  free_bytes: number;
+  used_bytes: number;
+  percent_used: number;
+}
+
+// Grouping
+export type GroupBy = "none" | "type" | "date" | "size";
+
+// Filter
+export type FileFilterType =
+  | "all"
+  | "folders"
+  | "documents"
+  | "images"
+  | "videos"
+  | "audio"
+  | "archives"
+  | "code";

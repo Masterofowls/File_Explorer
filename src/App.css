@@ -7,3 +7,5 @@
 @import "./styles/settings.css";
 @import "./styles/terminal.css";
 @import "./styles/animations.css";
+@import "./styles/titlebar.css";
+@import "./styles/tabbar.css";

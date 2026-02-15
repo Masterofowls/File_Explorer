@@ -1,0 +1,211 @@
+/* =================== Custom Titlebar =================== */
+.titlebar {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  min-height: 32px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  flex-shrink: 0;
+}
+
+.titlebar-unfocused {
+  opacity: 0.7;
+}
+
+.titlebar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.titlebar-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 4px;
+}
+
+.titlebar-spacer {
+  flex: 1;
+  height: 100%;
+}
+
+/* Window controls container */
+.titlebar-controls {
+  display: flex;
+  height: 100%;
+  -webkit-app-region: no-drag;
+}
+
+/* Individual window control buttons */
+.titlebar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: background 0.1s ease;
+  -webkit-app-region: no-drag;
+}
+
+.titlebar-button:hover {
+  background: var(--bg-hover);
+}
+
+.titlebar-button:active {
+  background: var(--bg-active);
+}
+
+/* Close button special styling */
+.titlebar-close:hover {
+  background: #c42b1c;
+  color: white;
+}
+
+.titlebar-close:active {
+  background: #b52a1c;
+  color: white;
+}
+
+/* Maximize restore icon adjustment */
+.titlebar-maximize svg {
+  opacity: 0.9;
+}
+
+/* Focus states for accessibility */
+.titlebar-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .titlebar {
+  background: var(--bg-tertiary);
+}
+
+[data-theme="dark"] .titlebar-close:hover {
+  background: #c42b1c;
+}
+
+/* =================== Native Menu Bar =================== */
+.menubar {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 4px;
+  user-select: none;
+  -webkit-user-select: none;
+  flex-shrink: 0;
+}
+
+.menubar-item {
+  position: relative;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: var(--text-primary);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.1s ease;
+}
+
+.menubar-item:hover,
+.menubar-item.active {
+  background: var(--bg-hover);
+}
+
+.menubar-label {
+  font-weight: 400;
+}
+
+.menubar-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: var(--shadow-lg);
+  padding: 4px 0;
+  z-index: 10000;
+  animation: menuSlideIn 0.1s ease;
+}
+
+@keyframes menuSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menubar-dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--text-primary);
+  cursor: pointer;
+  gap: 8px;
+}
+
+.menubar-dropdown-item:hover:not(.disabled) {
+  background: var(--bg-hover);
+}
+
+.menubar-dropdown-item.disabled {
+  color: var(--text-disabled);
+  cursor: default;
+}
+
+.menubar-check {
+  width: 16px;
+  font-size: 11px;
+  color: var(--accent);
+}
+
+.menubar-item-label {
+  flex: 1;
+}
+
+.menubar-shortcut {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-left: auto;
+}
+
+.menubar-separator {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 8px;
+}
+
+/* Dark theme */
+[data-theme="dark"] .menubar {
+  background: var(--bg-tertiary);
+}
+
+[data-theme="dark"] .menubar-dropdown {
+  background: var(--bg-secondary);
+  border-color: var(--border);
+}

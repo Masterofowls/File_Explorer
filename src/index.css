@@ -6,6 +6,48 @@
   box-sizing: border-box;
 }
 
+/* Native app anti-browser behaviors */
+html {
+  /* Prevent text selection like a native app */
+  -webkit-user-select: none;
+  user-select: none;
+  /* Disable text size adjustment */
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  /* Disable tap highlight on touch devices */
+  -webkit-tap-highlight-color: transparent;
+  /* Disable drag on entire document */
+  -webkit-user-drag: none;
+  /* Disable overscroll/bounce effect */
+  overscroll-behavior: none;
+}
+
+/* Allow text selection only in specific areas */
+input,
+textarea,
+[contenteditable="true"],
+.file-name,
+.preview-content,
+.terminal-output,
+.breadcrumb-segment,
+.properties-value {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Disable image dragging */
+img {
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* Smooth font rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 :root {
   --bg-primary: #f3f3f3;
   --bg-secondary: #ffffff;

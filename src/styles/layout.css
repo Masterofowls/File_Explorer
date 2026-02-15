@@ -1,9 +1,17 @@
 /* =================== Layout =================== */
 .app {
   display: flex;
+  flex-direction: column;
   height: 100vh;
   overflow: hidden;
   background: var(--bg-primary);
+}
+
+.app-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .main-content {
@@ -87,4 +95,51 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Sidebar drag-over state */
+.sidebar-item.drag-over {
+  background: color-mix(in srgb, var(--accent) 15%, transparent) !important;
+  outline: 2px dashed var(--accent);
+  outline-offset: -2px;
+}
+
+/* Drive space info */
+.sidebar-item.drive-item {
+  align-items: flex-start;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.drive-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.drive-space {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.drive-space-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.drive-space-used {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.drive-space-text {
+  font-size: 10px;
+  color: var(--text-disabled);
 }

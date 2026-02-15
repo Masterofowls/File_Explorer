@@ -1,5 +1,5 @@
-import React from "react";
-import { VscChevronRight } from "react-icons/vsc";
+import React, { useEffect, useRef, useState } from "react";
+import { VscChevronRight, VscEdit } from "react-icons/vsc";
 import { pathSegments } from "../utils/formatters";
 
 interface BreadcrumbProps {
@@ -9,6 +9,53 @@ interface BreadcrumbProps {
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ path, onNavigate }) => {
   const segments = pathSegments(path);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editValue, setEditValue] = useState(path);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setEditValue(path);
+  }, [path]);
+
+  useEffect(() => {
+    if (isEditing && inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.select();
+    }
+  }, [isEditing]);
+
+  const handleSubmit = () => {
+    const trimmed = editValue.trim();
+    if (trimmed && trimmed !== path) {
+      onNavigate(trimmed);
+    }
+    setIsEditing(false);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleSubmit();
+    } else if (e.key === "Escape") {
+      setEditValue(path);
+      setIsEditing(false);
+    }
+  };
+
+  if (isEditing) {
+    return (
+      <div className="breadcrumb editing">
+        <input
+          ref={inputRef}
+          type="text"
+          className="breadcrumb-input"
+          value={editValue}
+          onChange={(e) => setEditValue(e.target.value)}
+          onKeyDown={handleKeyDown}
+          onBlur={handleSubmit}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="breadcrumb">
@@ -27,6 +74,13 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ path, onNavigate }) => {
           </button>
         </React.Fragment>
       ))}
+      <button
+        className="breadcrumb-edit-btn"
+        onClick={() => setIsEditing(true)}
+        title="Edit path (click to type)"
+      >
+        <VscEdit />
+      </button>
     </div>
   );
 };

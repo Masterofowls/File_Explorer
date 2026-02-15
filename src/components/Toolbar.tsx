@@ -19,7 +19,14 @@ import {
   VscTerminal,
   VscTrash,
 } from "react-icons/vsc";
-import type { ClipboardState, ViewMode } from "../types";
+import type {
+  ClipboardState,
+  FileFilterType,
+  GroupBy,
+  ViewMode,
+} from "../types";
+import FilterDropdown from "./FilterDropdown";
+import GroupByDropdown from "./GroupByDropdown";
 
 interface ToolbarProps {
   canGoBack: boolean;
@@ -30,6 +37,8 @@ interface ToolbarProps {
   clipboard: ClipboardState | null;
   previewOpen: boolean;
   terminalOpen: boolean;
+  activeFilter: FileFilterType;
+  activeGroupBy: GroupBy;
   onGoBack: () => void;
   onGoForward: () => void;
   onGoUp: () => void;
@@ -42,6 +51,8 @@ interface ToolbarProps {
   onCut: () => void;
   onPaste: () => void;
   onViewModeChange: (mode: ViewMode) => void;
+  onFilterChange: (filter: FileFilterType) => void;
+  onGroupByChange: (groupBy: GroupBy) => void;
   onTogglePreview: () => void;
   onToggleTerminal: () => void;
   onOpenSettings: () => void;
@@ -57,6 +68,8 @@ const Toolbar: React.FC<ToolbarProps> = ({
   clipboard,
   previewOpen,
   terminalOpen,
+  activeFilter,
+  activeGroupBy,
   onGoBack,
   onGoForward,
   onGoUp,
@@ -69,6 +82,8 @@ const Toolbar: React.FC<ToolbarProps> = ({
   onCut,
   onPaste,
   onViewModeChange,
+  onFilterChange,
+  onGroupByChange,
   onTogglePreview,
   onToggleTerminal,
   onOpenSettings,
@@ -208,6 +223,14 @@ const Toolbar: React.FC<ToolbarProps> = ({
         >
           <VscTable />
         </button>
+        <FilterDropdown
+          activeFilter={activeFilter}
+          onFilterChange={onFilterChange}
+        />
+        <GroupByDropdown
+          activeGroupBy={activeGroupBy}
+          onGroupByChange={onGroupByChange}
+        />
       </div>
 
       <div className="toolbar-separator" />
